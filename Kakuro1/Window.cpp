@@ -24,8 +24,9 @@ void Window::ShowWindow() {
     Button button_exit(sf::Vector2f(800, 300), sf::Vector2f(200, 50), font, "Wyjscie");
 
     //pola matrix kakuro
-    PoleBlanc poleblanc(sf::Vector2f(30, 30));
-    PoledoWpisania poledowpisania(sf::Vector2f(80, 30));
+    PoleBlanc poleblanc(sf::Vector2f(30, 30),font,"4");
+    PoledoWpisania poledowpisania(sf::Vector2f(80, 80),font);
+
     //open window
     while (window.isOpen())
     {

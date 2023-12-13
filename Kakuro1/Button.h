@@ -13,12 +13,12 @@ public:
         : position(position), size(size) {
         shape.setPosition(position);
         shape.setSize(size);
-        shape.setFillColor(sf::Color::Blue);
+        shape.setFillColor(sf::Color::Cyan);
 
         buttonText.setFont(font);
         buttonText.setString(text);
         buttonText.setCharacterSize(20);
-        buttonText.setFillColor(sf::Color::White);
+        buttonText.setFillColor(sf::Color::Black);
 
         // Center text within the button
         sf::FloatRect textBounds = buttonText.getLocalBounds();

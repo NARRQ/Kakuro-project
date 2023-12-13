@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include "Window.h"
-#include "WindowNana.h"
 #include <iostream>
 int main()
 {

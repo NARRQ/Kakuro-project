@@ -4,5 +4,5 @@
 void PoleBlanc::DrawPoleBlanc(sf::RenderWindow& window)
 {
 	window.draw(shape);
-	
+	window.draw(poleblancText);
 }
