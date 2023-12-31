@@ -6,7 +6,8 @@ class PoleBlanc
 {
 private:
 	sf::RectangleShape shape;
-	sf::Text poleblancText;
+	sf::Text poleblancText{};
+	sf::Glyph gl{};
 	sf::Vector2f position;
 public:
 	//const sf::Vector2f size = sf::Vector2f(50,50);
@@ -16,7 +17,7 @@ public:
 
 		shape.setPosition(position);
 		shape.setSize(sf::Vector2f(50, 50));
-		shape.setFillColor(sf::Color::Cyan);
+		shape.setFillColor(sf::Color(0,240,240));
 
 		//set number into shape
 		poleblancText.setFont(font);	//ustawienie font
@@ -31,6 +32,6 @@ public:
 		
 		
 	}
-	void DrawPoleBlanc(sf::RenderWindow& window);
+	void DrawPoleBlanc(sf::RenderWindow& window) const;
 };
 

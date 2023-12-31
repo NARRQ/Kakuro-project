@@ -33,7 +33,7 @@ void CotoKakuro::OpenWindow() {
     textContent = wrapText(textContent, font, 24, maxWidth);
 
     //set text
-    sf::Text text;
+    sf::Text text{};
     text.setFont(font);
     text.setString(textContent);
     text.setCharacterSize(24);
@@ -48,7 +48,7 @@ void CotoKakuro::OpenWindow() {
         while (window.pollEvent(event))
         {
             // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed || button_exit.isClicked(window))
+            if (event.type == sf::Event::Closed || button_exit.isClicked(event,window))
                 window.close();
         }
         window.clear();

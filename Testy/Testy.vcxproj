@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Kakuro1\PoledoWpisania.cpp" />
     <ClCompile Include="main-test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Kakuro1\PoledoWpisania.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
