@@ -1,11 +1,5 @@
 #pragma once
-<<<<<<< Updated upstream
-class NowaGra
-{
-	void OpenMatrixKakuro();
-};
 
-=======
 #include<iostream>
 #include<string>
 #include<list>
@@ -34,8 +28,6 @@ private:
 	bool czysarozne=true;
 	sf::Text textSprawdz;
 public:
-	//NowaGra();
-	//~NowaGra();
 
 	std::list<PoleBlanc> getpolaBlanc();
 	void addPoleBlanc(PoleBlanc poleblanc);
@@ -52,4 +44,3 @@ public:
 	void Autouzupelnij(sf::Font& font);
 	void CzysclisteMatrix();
 };
->>>>>>> Stashed changes

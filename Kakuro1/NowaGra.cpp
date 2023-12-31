@@ -1,22 +1,5 @@
 #include "NowaGra.h"
 
-<<<<<<< Updated upstream
-void NowaGra::OpenMatrixKakuro()
-{
-
-=======
-//NowaGra::NowaGra()
-//{
-//
-//}
-
-//NowaGra::~NowaGra()
-//{
-//	for (int i = 0; i < przypadek; ++i) {
-//		delete[] rozwiazanie[i];
-//	}
-//	delete[] rozwiazanie;
-//}
 std::list<PoleBlanc> NowaGra::getpolaBlanc()
 {
 	return std::list<PoleBlanc>();
@@ -100,7 +83,6 @@ void NowaGra::UtworzListy(int m,sf::Font& font)
 			}
 		}
 	}
->>>>>>> Stashed changes
 }
 void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 {
