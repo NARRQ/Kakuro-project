@@ -1,4 +1,79 @@
-﻿  PoleBlanc.cpp
+﻿  Button.cpp
+  CotoKakuro.cpp
+  NowaGra.cpp
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.h(2,1): error C2059: błąd składniowy: „<<”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.h(4,1): error C2143: błąd składniowy: brakuje „;” przed „{”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.h(4,1): error C2447: "{": brak nagłówka funkcji (stary styl formalnej listy?)
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.h(8,1): error C2059: błąd składniowy: „==”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\sal.h(2361,12): error C2143: błąd składniowy: brakuje „;” przed „{”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\sal.h(2361,12): error C2447: "{": brak nagłówka funkcji (stary styl formalnej listy?)
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.h(7,1): error C2059: błąd składniowy: „<<”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.h(9,8): error C2334: nieoczekiwany(e) token(y) poprzedzające ":"; pomijanie treści widocznych funkcji
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\__msvc_int128.hpp(40,1): error C2059: błąd składniowy: „namespace”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\__msvc_int128.hpp(40,1): error C2334: nieoczekiwany(e) token(y) poprzedzające "{"; pomijanie treści widocznych funkcji
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xbit_ops.h(22,1): error C2059: błąd składniowy: „namespace”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xbit_ops.h(22,1): error C2334: nieoczekiwany(e) token(y) poprzedzające "{"; pomijanie treści widocznych funkcji
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\random(33,1): error C2059: błąd składniowy: „namespace”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\random(33,1): error C2334: nieoczekiwany(e) token(y) poprzedzające "{"; pomijanie treści widocznych funkcji
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.h(55,1): error C2059: błąd składniowy: „>>”
+  (kompilowanie pliku źródłowego „NowaGra.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.cpp(4,15): error C2039: „OpenMatrixKakuro”: nie jest składową elementu „PoledoWpisania::NowaGra”
+  D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.h(23,7):
+  zobacz deklarację „PoledoWpisania::NowaGra”
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.cpp(5,1): error C2334: nieoczekiwany(e) token(y) poprzedzające "{"; pomijanie treści widocznych funkcji
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\NowaGra.cpp(379,1): error C1004: napotkano nieoczekiwany znacznik końca pliku
+  PoleBlanc.cpp
+  PoledoWpisania.cpp
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.h(7,1): error C2059: błąd składniowy: „<<”
+  (kompilowanie pliku źródłowego „PoledoWpisania.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.h(9,8): error C2334: nieoczekiwany(e) token(y) poprzedzające ":"; pomijanie treści widocznych funkcji
+  (kompilowanie pliku źródłowego „PoledoWpisania.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.cpp(3,40): error C4596: „DrawPoledoWpisania”: niedozwolona kwalifikowana nazwa w deklaracji składowej
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.cpp(39,26): error C4596: „draw”: niedozwolona kwalifikowana nazwa w deklaracji składowej
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.cpp(46,29): error C4596: „getValue”: niedozwolona kwalifikowana nazwa w deklaracji składowej
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.cpp(55,30): error C4596: „setvalue”: niedozwolona kwalifikowana nazwa w deklaracji składowej
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.cpp(62,1): error C1004: napotkano nieoczekiwany znacznik końca pliku
+  Text.cpp
   Window.cpp
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.h(7,1): error C2059: błąd składniowy: „<<”
+  (kompilowanie pliku źródłowego „Window.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\PoledoWpisania.h(9,8): error C2334: nieoczekiwany(e) token(y) poprzedzające ":"; pomijanie treści widocznych funkcji
+  (kompilowanie pliku źródłowego „Window.cpp”)
+  
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\Window.cpp(12,14): error C3254: "PoledoWpisania": klasa zawiera jawne przesłonięcie "ShowWindow", ale nie pochodzi z interfejsu, który zawiera deklarację funkcji
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\Window.cpp(12,14): error C2838: „ShowWindow”: niedozwolona kwalifikowana nazwa w deklaracji składowej
+D:\ReposfromGitHub\Kakuro-project\Kakuro1\Window.cpp(12,27): error C1075: „{”: nie znaleziono zgodnego tokenu
   Generowanie kodu...
-  Kakuro1.vcxproj -> D:\ReposfromGitHub\Kakuro-project\x64\Debug\Kakuro1.exe
