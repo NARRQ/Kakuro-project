@@ -47,13 +47,16 @@ void NowaGra::CzyscListy()
 	poladoWpisania.clear();
 }
 
-void NowaGra::UtworzListy(int m,sf::Font& font)
+void NowaGra::UtworzListy(int m,sf::Font& font, bool uzupelniaj)
 {
 	if (rozwiazanie == nullptr) {
 		CzysclisteMatrix();
 	}
 	CzyscListy();
-	UtworzMacierzRozwiazan(m);
+	if (!uzupelniaj)
+	{
+		UtworzMacierzRozwiazan(m);
+	}
 	textSprawdz.setString("");
 	//utworzenie objektów
 	//wiersze
@@ -63,27 +66,49 @@ void NowaGra::UtworzListy(int m,sf::Font& font)
 		for (float j = 1; j < liczbaKolumn; j+=2)
 		{
 			liczba_do_matrix = rozwiazanie[(int)i][(int)j];
+			liczba_do_mapy_objektow = rozwiazanie[(int)i][(int)j-1];
 			//pole puste
-			if (rozwiazanie[(int)i][(int)j - 1 ] == 0 && liczba_do_matrix == 0 )
+			if (liczba_do_mapy_objektow <= 0 && liczba_do_matrix <= 0 )
 			{
-				PoleBlanc poleblanc(sf::Vector2f(30 + j * 30, 60 * i + 30), font, "");
+				PoleBlanc poleblanc(sf::Vector2f(30 + j * 30, 60 * i + 30), font, "","");
 				addPoleBlanc(poleblanc);
 			}
 			//pole blank
-			else if (rozwiazanie[(int)i][(int)j - 1] != 0 )
+			else if (liczba_do_mapy_objektow != 0)
 			{
-				PoleBlanc poleblanc(sf::Vector2f(30 + j * 30, 60 * i + 30), font, std::to_string(liczba_do_matrix));
-				addPoleBlanc(poleblanc);
+				if (liczba_do_mapy_objektow==-1)
+				{
+					//tylko wiersz
+					PoleBlanc poleblanc(sf::Vector2f(30 + j * 30, 60 * i + 30), font, "", std::to_string(liczba_do_matrix));
+					addPoleBlanc(poleblanc);
+				}
+				else if (liczba_do_matrix <= 0 )
+				{
+					//tylko kolunma
+					PoleBlanc poleblanc(sf::Vector2f(30 + j * 30, 60 * i + 30), font,std::to_string(liczba_do_mapy_objektow),"");
+					addPoleBlanc(poleblanc);
+				}
+				else
+				{
+					//all
+					PoleBlanc poleblanc(sf::Vector2f(30 + j * 30, 60 * i + 30), font, std::to_string(liczba_do_mapy_objektow), std::to_string(liczba_do_matrix));
+					addPoleBlanc(poleblanc);
+				}
 			}
 			//pole do wpisania
-			else if (rozwiazanie[(int)i][(int)j - 1] == 0 && liczba_do_matrix != 0)
+			else if (liczba_do_mapy_objektow == 0 && liczba_do_matrix != 0)
 			{
 				PoledoWpisania poledowpisania(sf::Vector2f(30 + j * 30, 60 * i + 30), font);
+				if (uzupelniaj)
+				{
+					poledowpisania.setvalue(liczba_do_matrix);
+				}
 				addPoledoWpisania(poledowpisania);
 			}
 		}
 	}
 }
+
 void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 {
 	int suma = 0;
@@ -98,7 +123,8 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 	//wprowadzenie danych
 	switch (liczbaWierszy_przypadek)
 	{
-		case 3:
+	case 3:case 4:
+			//plansza 3x3 i 4x4
 			for (int i = liczbaWierszy_przypadek - 1; i >-1; --i)
 			{
 				for (int j = liczbaKolumn - 1; j >-1; j-=2)
@@ -113,12 +139,12 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 					{
 						//wiersz
 						//pola blank
-						rozwiazanie[i][j-1] = 1;
+						rozwiazanie[i][j] = -1;
 						suma = 0;
 						for (int ii = 1; ii < liczbaWierszy_przypadek; ii++)
 						{
 							suma += rozwiazanie[ii][j];
-							rozwiazanie[i][j] = suma;
+							rozwiazanie[i][j-1] = suma;
 						}
 
 					}
@@ -126,7 +152,7 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 					{
 						//kolumna
 						//pola blank
-						rozwiazanie[i][j - 1] = 1;
+						rozwiazanie[i][j-1] = -1;
 						suma = 0;
 						for (int jj = 3; jj < liczbaKolumn; jj += 2)
 						{
@@ -171,52 +197,167 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 				}
 			}
 			break;
-		case 4: case 6:
+		case 7:
 			for (int i = liczbaWierszy_przypadek - 1; i > -1; --i)
 			{
-				for (int j = liczbaKolumn - 1; j > -1; --j)
+				for (int j = liczbaKolumn - 1; j > 0; j -= 2)
 				{
-					if (j % 2 == 0)
+					//wiersz 0 lub kolumna 0
+					if (i == 0 || j == 1)
 					{
-						//mapa do rysowania pol
-						rozwiazanie[i][j] = GeneratorWarunku(0,2);
-					}
-					//suma
-					else
-					{
-						//wiersz 0
-						if (i == -1)
+						//warunki dla pola blank
+						//min dwa pola do wpisania
+						if (
+							//kolumna
+							i < liczbaWierszy_przypadek - 2 &&
+							rozwiazanie[i + 1][j] != 0 && rozwiazanie[i + 2][j] != 0 &&
+							rozwiazanie[i + 1][j - 1] == 0 && rozwiazanie[i + 2][j - 1] == 0
+							)
 						{
+							//suma kolumna
 							suma = 0;
-							for (int ii = 2; ii < liczbaWierszy_przypadek; ii++)
+							for (int ii = i + 1; ii < liczbaWierszy_przypadek; ii++)
 							{
+								if (rozwiazanie[ii][j - 1]!=0)
+								{
+									break;
+								}
 								suma += rozwiazanie[ii][j];
-								rozwiazanie[i][j] = suma;
 							}
-
+							rozwiazanie[i][j - 1] = suma;
 						}
-						//kolumna 0
-						else if (j == -1)
-						{
-
-							suma = 0;
-							for (int jj = 1; jj < liczbaKolumn; jj += 2)
-							{
-								suma += rozwiazanie[i][jj];
-								rozwiazanie[i][j] = suma;
-							}
-						}
-						//reszta
 						else
 						{
+							rozwiazanie[i][j - 1] = -1;
+						}
+						if (
+							//wiersz
+							j < liczbaKolumn - 1 &&
+							rozwiazanie[i][j + 2] != 0 && rozwiazanie[i][j + 4] != 0 &&
+							rozwiazanie[i][j + 1] == 0 && rozwiazanie[i][j + 3] == 0
+							)
+						{
+							//suma wiersz
+							suma = 0;
+							for (int jj = j + 2; jj < liczbaKolumn; jj += 2)
+							{
+								if (rozwiazanie[i][jj - 1] !=0 )
+								{
+									break;
+								}
+								suma += rozwiazanie[i][jj];
+							}
+							rozwiazanie[i][j] = suma;
+						}
+						else
+						{
+							rozwiazanie[i][j] = -1;
+						}
+
+					}
+					else if (
+						(i > liczbaWierszy_przypadek * 2 / 3 && j > (liczbaKolumn) * 2 / 3)	//prawy dolny
+						|| (i > liczbaWierszy_przypadek * 2 / 3 && j <= (liczbaKolumn) / 3 + 1)	//lewy dolny
+						|| (i <= liczbaWierszy_przypadek * 2 / 3 && i > liczbaWierszy_przypadek / 3 && j > (liczbaKolumn) / 3 + 1 && j <= (liczbaKolumn) * 2 / 3)	//srodek srodek
+						|| (i <= liczbaWierszy_przypadek / 3 && j > (liczbaKolumn) * 2 / 3)//prawy gorny
+						|| (i <= liczbaWierszy_przypadek / 3 && j <= (liczbaKolumn) / 3 + 1)//lewy gorny
+						)	//skrajne rogi
+					{
+						//pole do wpisania
+						rozwiazanie[i][j - 1] = 0;
+						do
+						{
+							liczba = GeneratorWarunku(1, 9);
+							czysarozne = true;
+							//kolunma
+							for (int iii = i; iii <= liczbaWierszy_przypadek - 1; iii++)
+							{
+								if (rozwiazanie[iii][j] == liczba)
+								{
+									czysarozne = false;
+									break;
+								}
+							}
+							//wiersz
+							for (int jjj = j; jjj <= liczbaKolumn - 1; jjj += 2)
+							{
+								if (rozwiazanie[i][jjj] == liczba)
+								{
+									czysarozne = false;
+									break;
+								}
+							}
+							if (czysarozne)
+							{
+								rozwiazanie[i][j] = liczba;
+							}
+
+						} while (!czysarozne);
+					}
+					//srodki
+					else
+					{
+						if (GeneratorWarunku(0, 1))
+						{
+							//warunki dla pola blank
+							//min dwa pola do wpisania
+							if (
+								//kolumna
+								i < liczbaWierszy_przypadek - 2 &&
+								rozwiazanie[i + 1][j] != 0 && rozwiazanie[i + 2][j] != 0 &&
+								rozwiazanie[i + 1][j - 1] == 0 && rozwiazanie[i + 2][j - 1] == 0
+								)
+							{
+								//suma kolumna
+								suma = 0;
+								for (int ii = i+1; ii < liczbaWierszy_przypadek; ii ++)
+								{
+									if (rozwiazanie[ii][j - 1] != 0 )
+									{
+										break;
+									}
+									suma += rozwiazanie[ii][j];
+								}
+								rozwiazanie[i][j - 1] = suma;
+							}
+							else
+							{
+								rozwiazanie[i][j - 1] = -1;
+							}
+							if (
+								//wiersz
+								j < liczbaKolumn - 1 &&
+								rozwiazanie[i][j + 2] != 0 && rozwiazanie[i][j + 4] != 0 &&
+								rozwiazanie[i][j + 1] == 0 && rozwiazanie[i][j + 3] == 0
+								)
+							{
+								//suma wiersz
+								suma = 0;
+								for (int jj = j + 2; jj < liczbaKolumn; jj+=2)
+								{
+									if (rozwiazanie[i][jj-1] != 0)
+									{
+										break;
+									}
+									suma += rozwiazanie[i][jj];
+								}
+								rozwiazanie[i][j] = suma;
+							}
+							else
+							{
+								rozwiazanie[i][j] = -1;
+							}
+						}
+						else
+						{
+							//pole do wpisania
+							rozwiazanie[i][j - 1] = 0;
 							do
 							{
-								liczba = GeneratorWarunku(1,9);
-								//std::cout << liczba;
+								liczba = GeneratorWarunku(1, 9);
 								czysarozne = true;
-								//sprawdzenie czy jest rozna w wierszu i kolumnie
 								//kolunma
-								for (int iii = liczbaWierszy_przypadek - 2; iii > 0; iii -= 2)
+								for (int iii = i; iii <= liczbaWierszy_przypadek-1; iii++)
 								{
 									if (rozwiazanie[iii][j] == liczba)
 									{
@@ -225,7 +366,7 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 									}
 								}
 								//wiersz
-								for (int jjj = liczbaWierszy_przypadek - 1; jjj > 0; jjj--)
+								for (int jjj = j; jjj <= liczbaKolumn-1; jjj+=2)
 								{
 									if (rozwiazanie[i][jjj] == liczba)
 									{
@@ -240,22 +381,14 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 
 							} while (!czysarozne);
 						}
+
 					}
 				}
 			}
-			break;
-	}
-	
-	//wyswietlenie
-	for (int i = 0; i < liczbaWierszy_przypadek; ++i)
-	{
-		for (int j = 0; j < liczbaKolumn; j++)
-		{
-			std::cout << rozwiazanie[i][j]<<" ";
-		}
-		std::cout << std::endl;
+		break;
 	}
 }
+
 int NowaGra::GeneratorWarunku(const int poczatek, const int koniec)
 {
 	//generator liczb losowych
@@ -263,7 +396,6 @@ int NowaGra::GeneratorWarunku(const int poczatek, const int koniec)
 	std::random_device rd;
 	std::mt19937 gen(rd());
 
-	// Utworzenie rozk³adu jednostajnego w zakresie [1, 100]
 	std::uniform_int_distribution<> dis(poczatek, koniec);
 	return dis(gen);
 }
@@ -310,34 +442,7 @@ void NowaGra::Autouzupelnij(sf::Font& font)
 {
 	if(rozwiazanie!=nullptr)
 	{
-		CzyscListy();
-		for (float i = 0; i < liczbaWierszy_przypadek; i++)
-		{
-			//kolumny
-			for (float j = 1; j < liczbaKolumn; j += 2)
-			{
-				liczba_do_matrix = rozwiazanie[(int)i][(int)j];
-				//pole puste
-				if (rozwiazanie[(int)i][(int)j - 1] == 0 && liczba_do_matrix == 0)
-				{
-					PoleBlanc poleblanc(sf::Vector2f(30 + j * 30, 60 * i + 30), font, "");
-					addPoleBlanc(poleblanc);
-				}
-				//pole blank
-				else if (rozwiazanie[(int)i][(int)j - 1] != 0)
-				{
-					PoleBlanc poleblanc(sf::Vector2f(30 + j * 30, 60 * i + 30), font, std::to_string(liczba_do_matrix));
-					addPoleBlanc(poleblanc);
-				}
-				//pole do wpisania
-				else if (rozwiazanie[(int)i][(int)j - 1] == 0 && liczba_do_matrix != 0)
-				{
-					PoledoWpisania poledowpisania(sf::Vector2f(30 + j * 30, 60 * i + 30), font);
-					poledowpisania.setvalue(liczba_do_matrix);
-					addPoledoWpisania(poledowpisania);
-				}
-			}
-		}
+		UtworzListy(0, font, true);
 		CzysclisteMatrix();
 	}
 }

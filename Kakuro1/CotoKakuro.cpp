@@ -43,7 +43,6 @@ void CotoKakuro::OpenWindow() {
 
     while (window.isOpen())
     {
-        // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -51,7 +50,7 @@ void CotoKakuro::OpenWindow() {
             if (event.type == sf::Event::Closed || button_exit.isClicked(event,window))
                 window.close();
         }
-        window.clear();
+        window.clear(sf::Color(128, 128, 128));
         button_exit.draw(window);
         window.draw(text);
         window.display();

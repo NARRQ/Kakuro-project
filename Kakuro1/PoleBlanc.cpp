@@ -4,5 +4,6 @@
 void PoleBlanc::DrawPoleBlanc(sf::RenderWindow& window) const
 {
 	window.draw(shape);
-	window.draw(poleblancText);
+	window.draw(poleblancText_sumaWiersz);
+	window.draw(poleblancText_sumaKolumna);
 }

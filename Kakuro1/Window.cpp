@@ -25,15 +25,10 @@ void Window::ShowWindow()
     Button button_1(sf::Vector2f(780, 20), sf::Vector2f(200, 50), font, "Co to KAKURO?");
     Button button_2(sf::Vector2f(780, 80), sf::Vector2f(200, 50), font, "Nowa gra dla\n planszy 3x3");
     Button button_3(sf::Vector2f(780, 140), sf::Vector2f(200, 50), font, "Nowa gra dla\n planszy 4x4");
-    Button button_4(sf::Vector2f(780, 200), sf::Vector2f(200, 50), font, "Nowa gra dla\n planszy 6x6");
+    Button button_4(sf::Vector2f(780, 200), sf::Vector2f(200, 50), font, "Nowa gra dla\n planszy 7x7");
     Button button_5(sf::Vector2f(780, 260), sf::Vector2f(200, 50), font, "Sprawdz");
     Button button_6(sf::Vector2f(780, 320), sf::Vector2f(200, 50), font, "Autouzupelnianie");
     Button button_exit(sf::Vector2f(780, 430), sf::Vector2f(200, 50), font, "Wyjscie");
-
-    
-
-
-    //nowagra.stworzObjekty(6,font);
 
     //open window
     while (window.isOpen())
@@ -54,16 +49,13 @@ void Window::ShowWindow()
                 }
                 if (button_2.isClicked(event, window)) 
                 {
-                    std::cout << "---------------------------------------" << std::endl;
-                    nowagra.UtworzListy(3, font);
+                    nowagra.UtworzListy(3, font,false);
                 }
                 if (button_3.isClicked(event, window)) {
-                    std::cout << "---------------------------------------" << std::endl;
-                    nowagra.UtworzListy(4, font);
+                    nowagra.UtworzListy(4, font,false);
                 }
                 if (button_4.isClicked(event, window)) {
-                    std::cout << "---------------------------------------" << std::endl;
-                    nowagra.UtworzListy(6, font);
+                    nowagra.UtworzListy(7, font,false);
                 }
                 if (button_5.isClicked(event, window)) {
                     nowagra.Sprawdz(font);
@@ -90,13 +82,8 @@ void Window::ShowWindow()
             button_5.draw(window);
             button_6.draw(window);
             button_exit.draw(window);
-            //reder square if button clicked
-
-
             nowagra.wypiszObjekty(window);
             nowagra.SprawdzNapis(window);
             window.display();
-
-        
     }
 }

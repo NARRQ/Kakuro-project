@@ -8,7 +8,6 @@
 #include"PoleBlanc.h"
 #include"PoledoWpisania.h"
 
-//TEST
 #include<SFML/Window.hpp>
 #include<SFML/Graphics.hpp>
 #include <random>
@@ -21,6 +20,7 @@ private:
 	std::list<PoledoWpisania> poladoWpisania;
 	int liczba_warunek{};
 	int liczba_do_matrix{};
+	int liczba_do_mapy_objektow{};
 	int** rozwiazanie{};
 	int liczba{};
 	int liczbaWierszy_przypadek{};
@@ -28,7 +28,6 @@ private:
 	bool czysarozne=true;
 	sf::Text textSprawdz;
 public:
-
 	std::list<PoleBlanc> getpolaBlanc();
 	void addPoleBlanc(PoleBlanc poleblanc);
 	std::list<PoledoWpisania> getpoladoWpisania();
@@ -36,7 +35,7 @@ public:
 	void wypiszObjekty(sf::RenderWindow& window);
 	void wypiszEventy(const sf::Event& event, sf::RenderWindow& window);
 	void CzyscListy();
-	void UtworzListy(int m, sf::Font& font);
+	void UtworzListy(int m, sf::Font& font,bool uzupelniaj);
 	void UtworzMacierzRozwiazan(const int& przypadek);
 	int GeneratorWarunku(const int poczatek, const int koniec);
 	void Sprawdz(const sf::Font& font);
