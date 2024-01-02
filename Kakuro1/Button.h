@@ -4,7 +4,7 @@ class Button
 {
 private:
     sf::RectangleShape shape;
-    sf::Text buttonText;
+    sf::Text buttonText{};
     sf::Vector2f position;
     sf::Vector2f size;
 public:
@@ -13,8 +13,8 @@ public:
         : position(position), size(size) {
         shape.setPosition(position);
         shape.setSize(size);
-        shape.setFillColor(sf::Color::Cyan);
-
+        shape.setFillColor(sf::Color(0,240,240));
+       
         buttonText.setFont(font);
         buttonText.setString(text);
         buttonText.setCharacterSize(20);
@@ -22,13 +22,12 @@ public:
 
         // Center text within the button
         sf::FloatRect textBounds = buttonText.getLocalBounds();
-        buttonText.setOrigin(textBounds.left + textBounds.width / 2.0f,
-            textBounds.top + textBounds.height / 2.0f);
+        buttonText.setOrigin(textBounds.left + textBounds.width / 2.0f,textBounds.top + textBounds.height / 2.0f);
         buttonText.setPosition(position.x + size.x / 2.0f, position.y + size.y / 2.0f);
     }
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window) const;
     bool isMouseOver(const sf::RenderWindow& window) const;
-    bool isClicked(const sf::RenderWindow& window) const;
+    bool isClicked(const sf::Event& event, const sf::RenderWindow& window);
 
 };
 

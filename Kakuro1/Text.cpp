@@ -31,7 +31,6 @@ sf::Font setFont()
     sf::Font font;
     if (!font.loadFromFile("AbhayaLibre-Bold.ttf")) {
         std::cerr << "Error loading font\n";
-        //return -1;
     }
     return font;
 }
