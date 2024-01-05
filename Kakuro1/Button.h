@@ -25,6 +25,7 @@ public:
         buttonText.setOrigin(textBounds.left + textBounds.width / 2.0f,textBounds.top + textBounds.height / 2.0f);
         buttonText.setPosition(position.x + size.x / 2.0f, position.y + size.y / 2.0f);
     }
+    ~Button(){}
     void draw(sf::RenderWindow& window) const;
     bool isMouseOver(const sf::RenderWindow& window) const;
     bool isClicked(const sf::Event& event, const sf::RenderWindow& window);

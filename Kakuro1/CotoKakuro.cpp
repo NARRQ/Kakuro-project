@@ -13,24 +13,22 @@ void CotoKakuro::OpenWindow() {
 
     //font
     sf::Font font=setFont();
-    // Load text from file
-    std::ifstream file("text_file_cotokakuro.txt");
-    if (!file.is_open()) {
-        std::cerr << "Error opening file!" << std::endl;
-        return;
-    }
-
-    //read text from file
-    std::string textContent;
-    std::string line;
-    while (std::getline(file, line)) {
-        textContent += line + '\n';
-    }
-    file.close();
+    
+    std::string textContent = 
+        " Kakuro jest jak krzyzowka, w ktorej litery " 
+        " tworzace slowa zastapiono cyframi. "
+        " Kazde zsumowane slowo, czyli ciag cyfr "
+        " w bloku Kakuro musi miec wartosc liczby wskazanej "
+        " w pionowym lub poziomym bloku. "
+        " Mozna uzywac wylacznie cyfr : od 1 do 9, a danej cyfry "
+        " mozna uzyc tylko raz w bloku. "
+        " Kazde puzzle kakuro ma tylko jedno prawidlowe rozwiazanie, "
+        " ktore mozna odkryc za pomoca logicznego myslenia. ";
+    
 
     //wrap text
-    float maxWidth = 400.0f;
-    textContent = wrapText(textContent, font, 24, maxWidth);
+    //float maxWidth = 400.0f;
+    textContent = wrapText(textContent, font, 24, 500.0f);
 
     //set text
     sf::Text text{};
@@ -55,6 +53,4 @@ void CotoKakuro::OpenWindow() {
         window.draw(text);
         window.display();
     }
-
-
 }
