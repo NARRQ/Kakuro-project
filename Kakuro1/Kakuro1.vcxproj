@@ -137,6 +137,7 @@
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbhayaLibreBoldFont.hpp" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CotoKakuro.h" />
     <ClInclude Include="NowaGra.h" />

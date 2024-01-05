@@ -16,7 +16,7 @@ public:
         text.setPosition(position.x + 20, position.y + 10);
         text.setFillColor(sf::Color::Black);
     }
-
+    ~PoledoWpisania(){}
     void handleEvent(const sf::Event& event, sf::RenderWindow& window);
     void draw(sf::RenderWindow& window) const;
     int getValue() const;

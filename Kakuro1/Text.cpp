@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include "Text.hpp"
+#include "AbhayaLibreBoldFont.hpp"
 
 std::string wrapText(const std::string& text, sf::Font& font, unsigned int characterSize, float maxWidth) {
     std::stringstream wrappedText;
@@ -29,8 +30,6 @@ std::string wrapText(const std::string& text, sf::Font& font, unsigned int chara
 sf::Font setFont()
 {
     sf::Font font;
-    if (!font.loadFromFile("AbhayaLibre-Bold.ttf")) {
-        std::cerr << "Error loading font\n";
-    }
+    font.loadFromMemory(&AbhayaLibre_Bold_ttf, AbhayaLibre_Bold_ttf_len);
     return font;
 }

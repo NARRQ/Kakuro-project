@@ -39,6 +39,7 @@ public:
 		poleblancText_sumaKolumna.setOrigin(textBounds_kolumna.left + textBounds_kolumna.width / 2.0f, textBounds_kolumna.top + textBounds_kolumna.height / 2.0f);
 		poleblancText_sumaKolumna.setPosition(position.x + 10, position.y + 40);
 	}
+	~PoleBlanc(){}
 	void DrawPoleBlanc(sf::RenderWindow& window) const;
 };
 
