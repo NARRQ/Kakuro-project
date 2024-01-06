@@ -3,7 +3,6 @@
 int WinMain()
 {
     Window window;
-    //WindowNana window;
     window.ShowWindow();
     return 0;
 }

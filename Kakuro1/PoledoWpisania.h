@@ -5,8 +5,8 @@
 class PoledoWpisania
 {
 public:
-    PoledoWpisania(sf::Vector2f position, sf::Font& font)
-        : rectangle(sf::Vector2f(50, 50)), isTextInputActive(false),position(position) {
+    PoledoWpisania(int k,int w,sf::Vector2f position, sf::Font& font)
+        : id_k(k),id_w(w), rectangle(sf::Vector2f(50, 50)), isTextInputActive(false), position(position) {
         rectangle.setPosition(position);
         rectangle.setFillColor(sf::Color(240, 240, 240));
 
@@ -21,6 +21,8 @@ public:
     void draw(sf::RenderWindow& window) const;
     int getValue() const;
     void setvalue(int value);
+    int getIdK() const;
+    int getIdW() const;
 
 private:
     sf::RectangleShape rectangle;
@@ -28,5 +30,7 @@ private:
     sf::Text text{};
     bool isTextInputActive{};
     std::string inputText{};
+    const int id_k{};
+    const int id_w{};
 };
 
