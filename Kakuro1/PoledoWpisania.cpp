@@ -59,3 +59,13 @@ void PoledoWpisania::setvalue(int value)
     text.setString(inputText);
     text.setFillColor(sf::Color(0, 128, 0));
 }
+
+int PoledoWpisania::getIdK() const
+{
+    return id_k;
+}
+
+int PoledoWpisania::getIdW() const
+{
+    return id_w;
+}
