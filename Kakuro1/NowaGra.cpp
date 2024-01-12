@@ -58,7 +58,7 @@ void NowaGra::UtworzListy(int m,sf::Font& font, bool uzupelniaj)
 		UtworzMacierzRozwiazan(m);
 	}
 	textSprawdz.setString("");
-	//utworzenie objektów
+	//utworzenie objektÃ³w
 	//wiersze
 	for (float i = 0; i < liczbaWierszy_przypadek; i++)
 	{
@@ -444,7 +444,7 @@ void NowaGra::Sprawdz(const sf::Font& font)
 								if (WprowadzoneWartosci[ii] == it->getValue())
 								{
 									//ZLE
-									textSprawdz.setString("SPROBOJ JESZCZE RAZ");
+									textSprawdz.setString("SPROBUJ JESZCZE RAZ");
 									textSprawdz.setFillColor(sf::Color(128, 0, 0));
 									return;
 								}
@@ -462,7 +462,7 @@ void NowaGra::Sprawdz(const sf::Font& font)
 					if (suma_kontrolna!=suma_usera)
 					{
 						//ZLE
-						textSprawdz.setString("SPROBOJ JESZCZE RAZ");
+						textSprawdz.setString("SPROBUJ JESZCZE RAZ");
 						textSprawdz.setFillColor(sf::Color(128, 0, 0));
 						return;
 					}
@@ -511,7 +511,7 @@ void NowaGra::Sprawdz(const sf::Font& font)
 					if (suma_kontrolna != suma_usera)
 					{
 						//ZLE
-						textSprawdz.setString("SPROBOJ JESZCZE RAZ");
+						textSprawdz.setString("SPROBUJ JESZCZE RAZ");
 						textSprawdz.setFillColor(sf::Color(128, 0, 0));
 						return;
 					}
