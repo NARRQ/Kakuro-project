@@ -98,7 +98,7 @@ void NowaGra::UtworzListy(int m,sf::Font& font, bool uzupelniaj)
 			//pole do wpisania
 			else if (liczba_do_mapy_objektow == 0 && liczba_do_matrix != 0)
 			{
-				PoledoWpisania poledowpisania(sf::Vector2f(30 + j * 30, 60 * i + 30), font);
+				PoledoWpisania poledowpisania((int)j,(int)i,sf::Vector2f(30 + j * 30, 60 * i + 30), font);
 				if (uzupelniaj)
 				{
 					poledowpisania.setvalue(liczba_do_matrix);
@@ -131,8 +131,8 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 				{
 					if (i==0 && j==1)
 					{
-						rozwiazanie[i][j] = 0;
-						rozwiazanie[i][j-1] = 0;
+						rozwiazanie[i][j] = -1;
+						rozwiazanie[i][j-1] = -1;
 					}
 					//suma
 					else if (i == 0)
@@ -404,31 +404,117 @@ void NowaGra::Sprawdz(const sf::Font& font)
 {
 	if (rozwiazanie != nullptr)
 	{
+		//inicjacja textu Sprawdz
 		textSprawdz.setFont(font);
 		textSprawdz.setCharacterSize(30);
 		textSprawdz.setPosition(100,430);
 		std::list<PoledoWpisania>::iterator it = poladoWpisania.begin();
-		for (int i = 0; i < liczbaWierszy_przypadek && it!=poladoWpisania.end(); i++)
+		int suma_kontrolna{};
+		int suma_usera{};
+		int nr_pola{};
+		int WprowadzoneWartosci[10] = {};
+		int iloscWprowadzonych = 0;
+		for (int i = 0; i < liczbaWierszy_przypadek && it != poladoWpisania.end(); i++)
 		{
-			for (int j = 1; j < liczbaKolumn; j+=2)
+			for (int j = 1; j < liczbaKolumn; j += 2)
 			{
-				if (rozwiazanie[i][j-1]==0 && rozwiazanie[i][j]!=0)
+				//sprawdzenie po kolumnie
+				if (rozwiazanie[i][j-1]>0)
 				{
-					if (it->getValue()==0)
+					suma_kontrolna = rozwiazanie[i][j - 1];
+					suma_usera = 0;
+					iloscWprowadzonych = 0;
+					nr_pola = i + 1;
+					it = poladoWpisania.begin();
+					while (nr_pola<liczbaWierszy_przypadek && rozwiazanie[nr_pola][j-1]==0)
 					{
-						//nie uzupelniona
-						textSprawdz.setString("Uzupelnij tabele");
-						textSprawdz.setFillColor(sf::Color::Black);
-						return;
+						if (it->getValue() == 0)
+						{
+							//nie uzupelniona
+							textSprawdz.setString("Uzupelnij tabele");
+							textSprawdz.setFillColor(sf::Color::Black);
+							return;
+						}
+						else if (it->getIdW() == nr_pola && it->getIdK()==j)
+						{
+							//dodaj
+							//sprawdz czy wartosci sa rozne
+							for (int ii = 0; ii < 10; ii++)
+							{
+								if (WprowadzoneWartosci[ii] == it->getValue())
+								{
+									//ZLE
+									textSprawdz.setString("SPROBUJ JESZCZE RAZ");
+									textSprawdz.setFillColor(sf::Color(128, 0, 0));
+									return;
+								}
+							}
+							WprowadzoneWartosci[iloscWprowadzonych] = it->getValue();
+							suma_usera += it->getValue();
+							nr_pola++;
+							iloscWprowadzonych++;
+						}
+						else
+						{
+							it++;
+						}
 					}
-					if (rozwiazanie[i][j] != it->getValue())
+					if (suma_kontrolna!=suma_usera)
 					{
-						//zle
-						textSprawdz.setString("SPROBOJ JESZCZE RAZ");
+						//ZLE
+						textSprawdz.setString("SPROBUJ JESZCZE RAZ");
 						textSprawdz.setFillColor(sf::Color(128, 0, 0));
 						return;
 					}
-					++it;
+				}
+				//sprawdzenie po wierszu
+				if (rozwiazanie[i][j - 1] != 0 && rozwiazanie[i][j]>0)
+				{
+					suma_kontrolna = rozwiazanie[i][j];
+					suma_usera = 0;
+					iloscWprowadzonych = 0;
+					nr_pola = j+2;
+					it = poladoWpisania.begin();
+					while (nr_pola < liczbaKolumn && rozwiazanie[i][nr_pola - 1] == 0)
+					{
+						if (it->getValue() == 0)
+						{
+							//nie uzupelniona
+							textSprawdz.setString("Uzupelnij tabele");
+							textSprawdz.setFillColor(sf::Color::Black);
+							return;
+						}
+						else if (it->getIdK() == nr_pola && it->getIdW() == i)
+						{
+							//dodaj
+							//sprawdz czy wartosci sa rozne
+							for (int ii = 0; ii < 10; ii++)
+							{
+								if (WprowadzoneWartosci[ii] == it->getValue())
+								{
+									//ZLE
+									textSprawdz.setString("SPROBUJ JESZCZE RAZ");
+									textSprawdz.setFillColor(sf::Color(128, 0, 0));
+									return;
+								}
+							}
+							WprowadzoneWartosci[iloscWprowadzonych] = it->getValue();
+							suma_usera += it->getValue();
+							nr_pola+=2;
+							iloscWprowadzonych++;
+						}
+						else
+						{
+							it++;
+						}
+					}
+					if (suma_kontrolna != suma_usera)
+					{
+						//ZLE
+						textSprawdz.setString("SPROBUJ JESZCZE RAZ");
+						textSprawdz.setFillColor(sf::Color(128, 0, 0));
+						return;
+					}
 				}
 			}
 		}
