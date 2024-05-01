@@ -41,6 +41,22 @@ void Window::ShowWindow()
                 if (event.type == sf::Event::Closed) {
                     window.close();
                 }
+                // Resize event
+                if (event.type == sf::Event::Resized)
+                {
+                    // Adjust the window's dimensions to the new size
+                    window.setSize(event.size);
+
+                    // Adjust button positions and sizes based on the new window size
+                    // This is a simplified example. You'll need to adjust it based on your actual UI layout.
+                    button_1.setPosition(sf::Vector2f(780, 20));
+                    button_2.setPosition(sf::Vector2f(780, 80));
+                    button_3.setPosition(sf::Vector2f(780, 140));
+                    button_4.setPosition(sf::Vector2f(780, 200));
+                    button_5.setPosition(sf::Vector2f(780, 260));
+                    button_6.setPosition(sf::Vector2f(780, 320));
+                    button_exit.setPosition(sf::Vector2f(780, 430));
+                }
                 //if button cicked
                 if (button_1.isClicked(event, window)) 
                 {

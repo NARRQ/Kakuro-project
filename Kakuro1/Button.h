@@ -29,6 +29,7 @@ public:
     void draw(sf::RenderWindow& window) const;
     bool isMouseOver(const sf::RenderWindow& window) const;
     bool isClicked(const sf::Event& event, const sf::RenderWindow& window);
+    void setPosition(const sf::Vector2f& newPosition);
 
 };
 

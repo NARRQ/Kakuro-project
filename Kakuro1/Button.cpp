@@ -3,6 +3,7 @@
 
 
 void Button::draw(sf::RenderWindow& window) const {
+    shape.setPosition(position);
     window.draw(shape);
     window.draw(buttonText);
 }
@@ -29,3 +30,8 @@ bool Button::isClicked(const sf::Event& event, const sf::RenderWindow& window) {
         }
     return isMouseOver(window) && sf::Mouse::isButtonPressed(sf::Mouse::Left);
 }
+
+void Button::setPosition(const sf::Vector2f& newPosition) {
+    position = newPosition;
+}
+
