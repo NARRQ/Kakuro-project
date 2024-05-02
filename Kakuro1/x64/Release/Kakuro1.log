@@ -1,11 +1,8 @@
-﻿  Window.cpp
-D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\Kakuro1\Window.cpp(48,27): error C2664: 'void sf::WindowBase::setSize(const sf::Vector2u &)': cannot convert argument 1 from 'sf::Event::SizeEvent' to 'const sf::Vector2u &'
-  D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\Kakuro1\Window.cpp(48,41):
-  Reason: cannot convert from 'sf::Event::SizeEvent' to 'const sf::Vector2u'
-  D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\Kakuro1\Window.cpp(48,41):
-  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-  D:\ProgramFiles\vcpkg\installed\x64-windows\include\SFML\Window\WindowBase.hpp(244,10):
-  see declaration of 'sf::WindowBase::setSize'
-  D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\Kakuro1\Window.cpp(48,27):
-  while trying to match the argument list '(sf::Event::SizeEvent)'
-  
+﻿  NowaGra.cpp
+  Window.cpp
+  Generating code
+  1 of 366 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Kakuro1.vcxproj -> D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\x64\Release\Kakuro1.exe

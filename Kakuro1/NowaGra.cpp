@@ -123,8 +123,8 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 	//wprowadzenie danych
 	switch (liczbaWierszy_przypadek)
 	{
+	//plansza 3x3 i 4x4
 	case 3:case 4:
-			//plansza 3x3 i 4x4
 			for (int i = liczbaWierszy_przypadek - 1; i >-1; --i)
 			{
 				for (int j = liczbaKolumn - 1; j >-1; j-=2)
@@ -197,7 +197,8 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 				}
 			}
 			break;
-		case 7:
+		//plansza 7x7 i 8x8
+	case 7:
 			for (int i = liczbaWierszy_przypadek - 1; i > -1; --i)
 			{
 				for (int j = liczbaKolumn - 1; j > 0; j -= 2)
@@ -267,8 +268,8 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 						rozwiazanie[i][j - 1] = 0;
 						do
 						{
-							liczba = GeneratorWarunku(1, 9);
 							czysarozne = true;
+							liczba = GeneratorWarunku(1, 9);
 							//kolunma
 							for (int iii = i; iii <= liczbaWierszy_przypadek - 1; iii++)
 							{
@@ -297,6 +298,12 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 					//srodki
 					else
 					{
+						if (rozwiazanie[i - 1][j-1] > 0)
+						{
+							rozwiazanie[i][j - 1] = -1;
+							rozwiazanie[i][j] = -1;
+							break;
+						}
 						if (GeneratorWarunku(0, 1))
 						{
 							//warunki dla pola blank
@@ -386,6 +393,201 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 				}
 			}
 		break;
+	case 8:case 9:
+		 for (int i = liczbaWierszy_przypadek - 1; i > -1; --i)
+		 {
+			 for (int j = liczbaKolumn - 1; j > 0; j -= 2)
+			 {
+				 //wiersz 0 lub kolumna 0
+				 if (i == 0 || j == 1)
+				 {
+					 //warunki dla pola blank
+					 //min dwa pola do wpisania
+					 if (
+						 //kolumna
+						 i < liczbaWierszy_przypadek - 2 &&
+						 rozwiazanie[i + 1][j] != 0 && rozwiazanie[i + 2][j] != 0 &&
+						 rozwiazanie[i + 1][j - 1] == 0 && rozwiazanie[i + 2][j - 1] == 0
+						 )
+					 {
+						 //suma kolumna
+						 suma = 0;
+						 for (int ii = i + 1; ii < liczbaWierszy_przypadek; ii++)
+						 {
+							 if (rozwiazanie[ii][j - 1] != 0)
+							 {
+								 break;
+							 }
+							 suma += rozwiazanie[ii][j];
+						 }
+						 rozwiazanie[i][j - 1] = suma;
+					 }
+					 else
+					 {
+						 rozwiazanie[i][j - 1] = -1;
+					 }
+					 if (
+						 //wiersz
+						 j < liczbaKolumn - 1 &&
+						 rozwiazanie[i][j + 2] != 0 && rozwiazanie[i][j + 4] != 0 &&
+						 rozwiazanie[i][j + 1] == 0 && rozwiazanie[i][j + 3] == 0
+						 )
+					 {
+						 //suma wiersz
+						 suma = 0;
+						 for (int jj = j + 2; jj < liczbaKolumn; jj += 2)
+						 {
+							 if (rozwiazanie[i][jj - 1] != 0)
+							 {
+								 break;
+							 }
+							 suma += rozwiazanie[i][jj];
+						 }
+						 rozwiazanie[i][j] = suma;
+					 }
+					 else
+					 {
+						 rozwiazanie[i][j] = -1;
+					 }
+
+				 }
+				 else if (
+					 (i > liczbaWierszy_przypadek * 3 / 5 && j > (liczbaKolumn) * 2 / 3)	//prawy dolny
+					 || (i > liczbaWierszy_przypadek * 3 / 5 && j <= (liczbaKolumn) / 3 + 1)	//lewy dolny
+					 || (i <= liczbaWierszy_przypadek * 2 / 3 && i > liczbaWierszy_przypadek / 3 && j > (liczbaKolumn) / 3 + 1 && j <= (liczbaKolumn) * 2 / 3)	//srodek srodek
+					 || (i <= liczbaWierszy_przypadek / 3 && j > (liczbaKolumn) * 2 / 3)//prawy gorny
+					 || (i <= liczbaWierszy_przypadek / 3 && j <= (liczbaKolumn) / 3 + 1)//lewy gorny
+					 )	//skrajne rogi
+				 {
+					 //pole do wpisania
+					 rozwiazanie[i][j - 1] = 0;
+					 do
+					 {
+						 czysarozne = true;
+						 liczba = GeneratorWarunku(1, 9);
+						 //kolunma
+						 for (int iii = i; iii <= liczbaWierszy_przypadek - 1; iii++)
+						 {
+							 if (rozwiazanie[iii][j] == liczba)
+							 {
+								 czysarozne = false;
+								 break;
+							 }
+						 }
+						 //wiersz
+						 for (int jjj = j; jjj <= liczbaKolumn - 1; jjj += 2)
+						 {
+							 if (rozwiazanie[i][jjj] == liczba)
+							 {
+								 czysarozne = false;
+								 break;
+							 }
+						 }
+						 if (czysarozne)
+						 {
+							 rozwiazanie[i][j] = liczba;
+						 }
+
+					 } while (!czysarozne);
+				 }
+				 //srodki
+				 else
+				 {
+					 if (rozwiazanie[i - 1][j - 1] > 0)
+					 {
+						 rozwiazanie[i][j - 1] = -1;
+						 rozwiazanie[i][j] = -1;
+						 break;
+					 }
+					 if (GeneratorWarunku(0, 1))
+					 {
+						 //warunki dla pola blank
+						 //min dwa pola do wpisania
+						 if (
+							 //kolumna
+							 i < liczbaWierszy_przypadek - 2 &&
+							 rozwiazanie[i + 1][j] != 0 && rozwiazanie[i + 2][j] != 0 &&
+							 rozwiazanie[i + 1][j - 1] == 0 && rozwiazanie[i + 2][j - 1] == 0
+							 )
+						 {
+							 //suma kolumna
+							 suma = 0;
+							 for (int ii = i + 1; ii < liczbaWierszy_przypadek; ii++)
+							 {
+								 if (rozwiazanie[ii][j - 1] != 0)
+								 {
+									 break;
+								 }
+								 suma += rozwiazanie[ii][j];
+							 }
+							 rozwiazanie[i][j - 1] = suma;
+						 }
+						 else
+						 {
+							 rozwiazanie[i][j - 1] = -1;
+						 }
+						 if (
+							 //wiersz
+							 j < liczbaKolumn - 1 &&
+							 rozwiazanie[i][j + 2] != 0 && rozwiazanie[i][j + 4] != 0 &&
+							 rozwiazanie[i][j + 1] == 0 && rozwiazanie[i][j + 3] == 0
+							 )
+						 {
+							 //suma wiersz
+							 suma = 0;
+							 for (int jj = j + 2; jj < liczbaKolumn; jj += 2)
+							 {
+								 if (rozwiazanie[i][jj - 1] != 0)
+								 {
+									 break;
+								 }
+								 suma += rozwiazanie[i][jj];
+							 }
+							 rozwiazanie[i][j] = suma;
+						 }
+						 else
+						 {
+							 rozwiazanie[i][j] = -1;
+						 }
+					 }
+					 else
+					 {
+						 //pole do wpisania
+						 rozwiazanie[i][j - 1] = 0;
+						 do
+						 {
+							 liczba = GeneratorWarunku(1, 9);
+							 czysarozne = true;
+							 //kolunma
+							 for (int iii = i; iii <= liczbaWierszy_przypadek - 1; iii++)
+							 {
+								 if (rozwiazanie[iii][j] == liczba)
+								 {
+									 czysarozne = false;
+									 break;
+								 }
+							 }
+							 //wiersz
+							 for (int jjj = j; jjj <= liczbaKolumn - 1; jjj += 2)
+							 {
+								 if (rozwiazanie[i][jjj] == liczba)
+								 {
+									 czysarozne = false;
+									 break;
+								 }
+							 }
+							 if (czysarozne)
+							 {
+								 rozwiazanie[i][j] = liczba;
+							 }
+
+						 } while (!czysarozne);
+					 }
+
+				 }
+			 }
+		 }
+		 break;
 	}
 }
 
@@ -407,7 +609,7 @@ void NowaGra::Sprawdz(const sf::Font& font)
 		//inicjacja textu Sprawdz
 		textSprawdz.setFont(font);
 		textSprawdz.setCharacterSize(30);
-		textSprawdz.setPosition(100,430);
+		textSprawdz.setPosition(100,560);
 		std::list<PoledoWpisania>::iterator it = poladoWpisania.begin();
 		int suma_kontrolna{};
 		int suma_usera{};

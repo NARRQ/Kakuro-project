@@ -1,2 +1,5 @@
-﻿  main.cpp
-  Kakuro1.vcxproj -> D:\ReposfromGitHub\Kakuro-project\x64\Debug\Kakuro1.exe
+﻿  NowaGra.cpp
+  Window.cpp
+  Generating Code...
+  LINK : D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\x64\Debug\Kakuro1.exe not found or not built by the last incremental link; performing full link
+  Kakuro1.vcxproj -> D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\x64\Debug\Kakuro1.exe

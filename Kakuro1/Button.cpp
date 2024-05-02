@@ -3,7 +3,7 @@
 
 
 void Button::draw(sf::RenderWindow& window) const {
-    shape.setPosition(position);
+    //shape.setPosition(position);
     window.draw(shape);
     window.draw(buttonText);
 }
@@ -33,5 +33,6 @@ bool Button::isClicked(const sf::Event& event, const sf::RenderWindow& window) {
 
 void Button::setPosition(const sf::Vector2f& newPosition) {
     position = newPosition;
+    shape.setPosition(newPosition);
 }
 
