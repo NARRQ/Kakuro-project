@@ -1,5 +1,11 @@
-﻿  NowaGra.cpp
+﻿  Button.cpp
+  CotoKakuro.cpp
+  main.cpp
+  NowaGra.cpp
+  PoleBlanc.cpp
+  PoledoWpisania.cpp
   Window.cpp
+  Text.cpp
   Generating Code...
-  LINK : D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\x64\Debug\Kakuro1.exe not found or not built by the last incremental link; performing full link
-  Kakuro1.vcxproj -> D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\x64\Debug\Kakuro1.exe
+  LINK : D:\STUDIA\4_SEMESTR\Zaawansowany C++\1\Kakuro-project\x64\Debug\Kakuro1.exe not found or not built by the last incremental link; performing full link
+  Kakuro1.vcxproj -> D:\STUDIA\4_SEMESTR\Zaawansowany C++\1\Kakuro-project\x64\Debug\Kakuro1.exe

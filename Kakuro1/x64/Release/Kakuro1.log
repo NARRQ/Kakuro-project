@@ -1,8 +1,14 @@
-﻿  NowaGra.cpp
+﻿  Button.cpp
+  CotoKakuro.cpp
+  main.cpp
+  NowaGra.cpp
+  PoleBlanc.cpp
+  PoledoWpisania.cpp
   Window.cpp
+  Text.cpp
   Generating code
-  1 of 366 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  359 of 366 functions (98.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Kakuro1.vcxproj -> D:\STUDIA\4_SEMESTR\Zaawansowany C++\Kakuro-project\x64\Release\Kakuro1.exe
+  Kakuro1.vcxproj -> D:\STUDIA\4_SEMESTR\Zaawansowany C++\1\Kakuro-project\x64\Release\Kakuro1.exe
