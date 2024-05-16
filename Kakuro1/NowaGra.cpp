@@ -298,12 +298,6 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 					//srodki
 					else
 					{
-						if (rozwiazanie[i - 1][j-1] > 0)
-						{
-							rozwiazanie[i][j - 1] = -1;
-							rozwiazanie[i][j] = -1;
-							break;
-						}
 						if (GeneratorWarunku(0, 1))
 						{
 							//warunki dla pola blank
@@ -493,12 +487,6 @@ void NowaGra::UtworzMacierzRozwiazan(const int& przypadek)
 				 //srodki
 				 else
 				 {
-					 if (rozwiazanie[i - 1][j - 1] > 0)
-					 {
-						 rozwiazanie[i][j - 1] = -1;
-						 rozwiazanie[i][j] = -1;
-						 break;
-					 }
 					 if (GeneratorWarunku(0, 1))
 					 {
 						 //warunki dla pola blank
